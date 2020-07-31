@@ -1,0 +1,17 @@
+{
+  "name": "learn-redux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "serve": "node --experimental-modules src/index.js"
+  },
+  "type": "module",
+  "author": "mc",
+  "license": "ISC",
+  "dependencies": {
+    "redux": "^4.0.5"
+  }
+}
