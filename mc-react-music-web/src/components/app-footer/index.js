@@ -6,12 +6,12 @@ import { AppFooterWrapper, FooterLeft, FooterRight } from "./style";
 export default memo(function MCAppFooter() {
   return (
     <AppFooterWrapper>
-      <div class="content wrap-v2">
+      <div className="content wrap-v2">
         <FooterLeft>
           <p className="link">
             {footerLinks.map((item, index) => {
               return (
-                <Fragment>
+                <Fragment key={item.title}>
                   <a href={item.link} target="_blank" rel="noopener noreferrer">
                     {item.title}
                   </a>
@@ -60,7 +60,7 @@ export default memo(function MCAppFooter() {
         <FooterRight>
           {footerImages.map((item, index) => {
             return (
-              <li className="item">
+              <li className="item" key={item.link}>
                 <a
                   className="link"
                   href={item.link}
