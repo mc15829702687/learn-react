@@ -1,9 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const DisCoverWrapper = styled.div`
-  height: 35px;
-  background-color: #C20C0C;
-`
+  .top {
+    height: 35px;
+    background-color: #c20c0c;
+  }
+`;
 export const TopMenu = styled.ul`
   display: flex;
   align-items: center;
@@ -21,9 +23,10 @@ export const TopMenu = styled.ul`
       margin: 7px 17px 0;
       color: #fff;
     }
-    a:hover, a.active {
-      background-color: #9B0909;
+    a:hover,
+    a.active {
+      background-color: #9b0909;
       border-radius: 20px;
     }
   }
-`
+`;

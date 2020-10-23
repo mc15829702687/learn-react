@@ -1,33 +1,44 @@
-import React, { memo, useEffect } from 'react';
-import { connect } from "react-redux";
+import React, { memo } from "react";
 
-import { getBannerAction } from '@/pages/discover/c-pages/recommend/store/actionCreators';
+import MCTopBanners from "./c-cpns/top-banners";
+import ThemeHeaderRcm from '@/components/theme-header-rcm';
 
+import { RecommendWrapper } from "./style";
 
 function MCRecommend(props) {
-  const {getBanners, banners} = props
-  useEffect(() => {
-    getBanners()
-  }, [getBanners])
-
   return (
-    <div>
-      MCRecommend: {banners.length}
-    </div>
-  )
+    <RecommendWrapper>
+      <MCTopBanners />
+      {/* <ThemeHeaderRcm title="热门推荐" keywords={['华语', '流行', '摇滚', '民谣', '电子']}/> */}
+    </RecommendWrapper>
+  );
 }
 
-const mapStateToProps = state => {
-  return {
-    banners: state.banners
-  }
-}
+export default memo(MCRecommend);
 
-const mapDispatchToProps = dispatch => ({
-  getBanners() {
-    return dispatch(getBannerAction())
-  }
-})
+// function MCRecommend(props) {
+//   const {getBanners, topBanners} = props
+//   useEffect(() => {
+//     getBanners()
+//   }, [getBanners])
 
+//   return (
+//     <div>
+//       MCRecommend: {topBanners.length}
+//     </div>
+//   )
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(memo(MCRecommend));
+// const mapStateToProps = state => {
+//   return {
+//     topBanners: state.recommend.topBanners
+//   }
+// }
+
+// const mapDispatchToProps = dispatch => ({
+//   getBanners() {
+//     return dispatch(getBannerAction())
+//   }
+// })
+
+// export default connect(mapStateToProps, mapDispatchToProps)(memo(MCRecommend));
