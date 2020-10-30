@@ -1,15 +1,24 @@
 import React, { memo } from "react";
 
 import MCTopBanners from "./c-cpns/top-banners";
-import ThemeHeaderRcm from '@/components/theme-header-rcm';
+import MCHotRecommend from "./c-cpns/hot-recommend";
+import MCNewAlubum from './c-cpns/new-album';
+import McTopList from './c-cpns/top-list';
 
-import { RecommendWrapper } from "./style";
+import { RecommendWrapper, RecommendContent, RecommendLeft, RecommendRight  } from "./style";
 
 function MCRecommend(props) {
   return (
     <RecommendWrapper>
       <MCTopBanners />
-      {/* <ThemeHeaderRcm title="热门推荐" keywords={['华语', '流行', '摇滚', '民谣', '电子']}/> */}
+      <RecommendContent className="wrap-v2">
+        <RecommendLeft>
+          <MCHotRecommend />
+          <MCNewAlubum />
+          <McTopList/>
+        </RecommendLeft>
+        <RecommendRight></RecommendRight>
+      </RecommendContent>
     </RecommendWrapper>
   );
 }
