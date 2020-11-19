@@ -4,6 +4,8 @@ import { renderRoutes } from "react-router-config";
 
 import routes from "@/router";
 
+import AppPlayBar from '../player/app-play-bar';
+
 import AppHearder from "components/app-header";
 import AppFooter from "components/app-footer";
 
@@ -15,6 +17,7 @@ export default function MCMain() {
         {renderRoutes(routes)}
       </Suspense>
       <AppFooter />
+      <AppPlayBar/>
     </HashRouter>
   );
 }

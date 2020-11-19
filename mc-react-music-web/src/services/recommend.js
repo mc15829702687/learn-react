@@ -2,7 +2,7 @@ import request from "./request";
 
 export function getBanners() {
   return request({
-    url: "/banner"
+    url: "/banner",
   });
 }
 
@@ -10,25 +10,35 @@ export function getHotRecommend(limit) {
   return request({
     url: "/personalized",
     params: {
-      limit
-    }
+      limit,
+    },
   });
 }
 
 export function getNewAlubum(limit) {
   return request({
-    url: '/top/album',
+    url: "/top/album",
     params: {
-      limit
-    }
-  })
+      limit,
+    },
+  });
 }
 
 export function getTopList(idx) {
   return request({
-    url: '/top/list',
+    url: "/top/list",
     params: {
-      idx
-    }
-  })
+      idx,
+    },
+  });
+}
+
+export function getSettleSingerList(limit, cat) {
+  return request({
+    url: "/artist/list",
+    params: {
+      limit,
+      cat,
+    },
+  });
 }

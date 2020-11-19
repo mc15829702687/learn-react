@@ -63,7 +63,7 @@ select,
 button,
 textarea {
   font-size: 12px;
-  color: #666;
+  color: #333;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f5f5f5;
 }
@@ -134,7 +134,7 @@ textarea {
   right: 0;
   top: 0;
   bottom: 0;
-  text-indent: -999px;
+  text-indent: -9999px;
   background: url(../img/sprite_cover.png) no-repeat -145px -57px;
 }
 

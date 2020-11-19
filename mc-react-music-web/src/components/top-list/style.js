@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const TopListWrapper = styled.div`
-  width: 230px;
+  flex: 1;
 
   .header {
     display: flex;
-    padding: 20px 0 0 19px;
+    padding: 20px 0 0 20px;
     height: 100px;
 
     .image {
@@ -48,14 +48,82 @@ export const TopListWrapper = styled.div`
   }
 
   .list {
+    margin-top: 18px;
     .list-item {
       display: flex;
       align-items: center;
       height: 32px;
-      line-height: 32px;
+      position: relative;
 
+      :nth-child(-n + 3) .ranking {
+        color: #c10d0c;
+      }
       .ranking {
         width: 35px;
+        text-align: center;
+        padding-left: 10px;
+        font-size: 16px;
+      }
+
+      .info {
+        display: flex;
+        justify-content: space-between;
+        width: 185px;
+        color: #000;
+        height: 17px;
+        line-height: 17px;
+
+        .name {
+          flex: 1;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .operate {
+          display: flex;
+          width: 83px;
+          align-items: center;
+          display: none;
+
+          .btn {
+            width: 17px;
+            height: 17px;
+            margin-left: 8px;
+            cursor: pointer;
+          }
+          .play {
+            background-position: -267px -268px;
+          }
+          .addto {
+            position: relative;
+            top: 2px;
+            background-position: 0 -700px;
+          }
+          .favor {
+            background-position: -297px -268px;
+          }
+        }
+      }
+      &:hover {
+        .operate {
+          display: block;
+        }
+      }
+    }
+  }
+  .footer {
+    height: 32px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 32px;
+    a {
+      color: #000;
+      &:hover {
+        text-decoration: underline;
       }
     }
   }

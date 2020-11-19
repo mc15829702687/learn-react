@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 import { getTopListAction } from "../../store/actionCreators";
 
@@ -11,21 +11,27 @@ export default memo(function McTopList(props) {
   // state and props
 
   // redux hooks
-  const { topList } = useSelector((state) => ({
-    topList: state.getIn(["recommend", "topList"]),
-  }));
+  const { topUpList, topNewList, topOriginList } = useSelector((state) => ({
+    topUpList: state.getIn(["recommend", "topUpList"]),
+    topNewList: state.getIn(["recommend", "topNewList"]),
+    topOriginList: state.getIn(["recommend", "topOriginList"]),
+  }), shallowEqual);
   const dispatch = useDispatch();
 
   // other hooks
   useEffect(() => {
     dispatch(getTopListAction(3));
+    dispatch(getTopListAction(0));
+    dispatch(getTopListAction(2));
   }, [dispatch]);
 
   return (
     <TopListWrapper>
       <MCThemeHeaderRcm title="榜单" moreLink="/discover/toplist" />
-      <div className="content">
-        <MCTopList info={topList} />
+      <div className="tops">
+        <MCTopList info={topUpList} />
+        <MCTopList info={topNewList} />
+        <MCTopList info={topOriginList} />
       </div>
     </TopListWrapper>
   );

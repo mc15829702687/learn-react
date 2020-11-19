@@ -49,6 +49,9 @@ export default memo(function MCTopList(props) {
           );
         })}
       </div>
+      <div className="footer">
+        <a href="/todo">查看全部></a>
+      </div>
     </TopListWrapper>
   );
 });
