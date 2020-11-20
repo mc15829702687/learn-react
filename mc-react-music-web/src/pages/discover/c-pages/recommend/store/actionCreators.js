@@ -73,6 +73,7 @@ export const getTopListAction = (idx) => {
           break;
         case 2: 
           dispacth(changeTopOriginListAction(res));
+          break;
         default:
           console.log('其他数据处理！')
       }
@@ -84,7 +85,6 @@ export const getTopListAction = (idx) => {
 export const getSettleSinger = () => {
   return dispatch => {
     getSettleSingerList(5, 5001).then(res => {
-      console.log('res', res);
       dispatch(changeSettleSinger(res))
     })
   }

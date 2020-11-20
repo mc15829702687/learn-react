@@ -1,81 +1,82 @@
 import { Map } from "immutable";
 
-import * as actionTypes from './constants';
+import * as actionTypes from "./constants";
 
 const defaultState = Map({
   currentSong: {
-    "name": "有何不可",
-    "id": 167876,
-    "pst": 0,
-    "t": 0,
-    "ar": [
+    name: "冬眠",
+    id: 1398663411,
+    pst: 0,
+    t: 0,
+    ar: [
       {
-        "id": 5771,
-        "name": "许嵩",
-        "tns": [],
-        "alias": []
-      }
+        id: 28863695,
+        name: "司南",
+        tns: [],
+        alias: [],
+      },
     ],
-    "alia": [],
-    "pop": 100,
-    "st": 0,
-    "rt": "600902000007916021",
-    "fee": 8,
-    "v": 49,
-    "crbt": null,
-    "cf": "",
-    "al": {
-      "id": 16953,
-      "name": "自定义",
-      "picUrl": "https://p2.music.126.net/Md3RLH0fe2a_3dMDnfqoQg==/18590542604286213.jpg",
-      "tns": [],
-      "pic_str": "18590542604286213",
-      "pic": 18590542604286212
+    alia: [],
+    pop: 100,
+    st: 0,
+    rt: "",
+    fee: 8,
+    v: 6,
+    crbt: null,
+    cf: "",
+    al: {
+      id: 82655016,
+      name: "冬眠",
+      picUrl:
+        "https://p1.music.126.net/4KDBaQXnQywQovmqvjx-8Q==/109951164444131697.jpg",
+      tns: [],
+      pic_str: "109951164444131697",
+      pic: 109951164444131697,
     },
-    "dt": 241840,
-    "h": {
-      "br": 320000,
-      "fid": 0,
-      "size": 9675799,
-      "vd": -21099
+    dt: 269583,
+    h: {
+      br: 320000,
+      fid: 0,
+      size: 10785480,
+      vd: -21403,
     },
-    "m": {
-      "br": 192000,
-      "fid": 0,
-      "size": 5805497,
-      "vd": -18400
+    m: {
+      br: 192000,
+      fid: 0,
+      size: 6471306,
+      vd: -18804,
     },
-    "l": {
-      "br": 128000,
-      "fid": 0,
-      "size": 3870346,
-      "vd": -16900
+    l: {
+      br: 128000,
+      fid: 0,
+      size: 4314218,
+      vd: -17128,
     },
-    "a": null,
-    "cd": "1",
-    "no": 3,
-    "rtUrl": null,
-    "ftype": 0,
-    "rtUrls": [],
-    "djId": 0,
-    "copyright": 2,
-    "s_id": 0,
-    "mark": 8192,
-    "originCoverType": 0,
-    "single": 0,
-    "noCopyrightRcmd": null,
-    "mv": 0,
-    "rtype": 0,
-    "rurl": null,
-    "mst": 9,
-    "cp": 14026,
-    "publishTime": 1231516800000
+    a: null,
+    cd: "01",
+    no: 1,
+    rtUrl: null,
+    ftype: 0,
+    rtUrls: [],
+    djId: 0,
+    copyright: 1,
+    s_id: 0,
+    mark: 0,
+    originCoverType: 0,
+    single: 0,
+    noCopyrightRcmd: null,
+    rtype: 0,
+    rurl: null,
+    mst: 9,
+    cp: 1416678,
+    mv: 0,
+    publishTime: 1571932800000,
   },
 });
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
-    // case actionTypes.CHANGE_CURRENT_SONG: 
+    // case actionTypes.CHANGE_CURRENT_SONG:
     //   return state.set('currentSong', action.currentSong)
     default:
       return state;

@@ -25,8 +25,6 @@ export default memo(function MCSettleSinger() {
     dispatch(getSettleSinger());
   }, [dispatch]);
 
-  console.log("settleSingerList", settleSingerList);
-
   return (
     <SettleSingerWrapper>
       <MCThemeHeaderSmall title="入驻歌手" more="查看全部>" />
