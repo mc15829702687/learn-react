@@ -46,7 +46,7 @@ export const Control = styled.div`
     width: 36px;
     height: 36px;
     margin: 0 8px;
-    background-position: 0 ${props => props.isPlaying ? '-165px' : '-204px'};
+    background-position: 0 ${(props) => (props.isPlaying ? "-165px" : "-204px")};
   }
 `;
 
@@ -79,8 +79,8 @@ export const PlayInfo = styled.div`
 
     .progress {
       display: flex;
-      align-items: center; 
-      
+      align-items: center;
+
       /* antd进度条 */
       .ant-slider {
         width: 493px;
@@ -100,6 +100,9 @@ export const PlayInfo = styled.div`
           border: none;
           margin-top: -7px;
           background: url(/static/media/sprite_icon.de77152c.png) 0 -250px;
+        }
+        .ant-slider-handle:focus {
+          box-shadow: 0 0 0 5px rgb(178 26 26 / 12%);
         }
       }
 

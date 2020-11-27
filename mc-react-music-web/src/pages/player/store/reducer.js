@@ -3,6 +3,214 @@ import { Map } from "immutable";
 import * as actionTypes from "./constants";
 
 const defaultState = Map({
+  playList: [
+    {
+      name: "冬眠",
+      id: 1398663411,
+      pst: 0,
+      t: 0,
+      ar: [
+        {
+          id: 28863695,
+          name: "司南",
+          tns: [],
+          alias: [],
+        },
+      ],
+      alia: [],
+      pop: 100,
+      st: 0,
+      rt: "",
+      fee: 8,
+      v: 6,
+      crbt: null,
+      cf: "",
+      al: {
+        id: 82655016,
+        name: "冬眠",
+        picUrl:
+          "https://p1.music.126.net/4KDBaQXnQywQovmqvjx-8Q==/109951164444131697.jpg",
+        tns: [],
+        pic_str: "109951164444131697",
+        pic: 109951164444131697,
+      },
+      dt: 269583,
+      h: {
+        br: 320000,
+        fid: 0,
+        size: 10785480,
+        vd: -21403,
+      },
+      m: {
+        br: 192000,
+        fid: 0,
+        size: 6471306,
+        vd: -18804,
+      },
+      l: {
+        br: 128000,
+        fid: 0,
+        size: 4314218,
+        vd: -17128,
+      },
+      a: null,
+      cd: "01",
+      no: 1,
+      rtUrl: null,
+      ftype: 0,
+      rtUrls: [],
+      djId: 0,
+      copyright: 1,
+      s_id: 0,
+      mark: 0,
+      originCoverType: 0,
+      single: 0,
+      noCopyrightRcmd: null,
+      rtype: 0,
+      rurl: null,
+      mst: 9,
+      cp: 1416678,
+      mv: 0,
+      publishTime: 1571932800000,
+    },
+    {
+      name: "雅俗共赏",
+      id: 411214279,
+      pst: 0,
+      t: 0,
+      ar: [
+        {
+          id: 5771,
+          name: "许嵩",
+          tns: [],
+          alias: [],
+        },
+      ],
+      alia: [],
+      pop: 100,
+      st: 0,
+      rt: null,
+      fee: 8,
+      v: 31,
+      crbt: null,
+      cf: "",
+      al: {
+        id: 34749138,
+        name: "青年晚报",
+        picUrl:
+          "https://p1.music.126.net/Wcs2dbukFx3TUWkRuxVCpw==/3431575794705764.jpg",
+        tns: [],
+        pic: 3431575794705764,
+      },
+      dt: 249621,
+      h: {
+        br: 320000,
+        fid: 0,
+        size: 9987177,
+        vd: -22200,
+      },
+      m: {
+        br: 192000,
+        fid: 0,
+        size: 5992323,
+        vd: -19600,
+      },
+      l: {
+        br: 128000,
+        fid: 0,
+        size: 3994896,
+        vd: -17800,
+      },
+      a: null,
+      cd: "1",
+      no: 2,
+      rtUrl: null,
+      ftype: 0,
+      rtUrls: [],
+      djId: 0,
+      copyright: 0,
+      s_id: 0,
+      mark: 8192,
+      originCoverType: 0,
+      single: 0,
+      noCopyrightRcmd: null,
+      mv: 5302271,
+      rtype: 0,
+      rurl: null,
+      mst: 9,
+      cp: 14026,
+      publishTime: 1461723397683,
+    },
+    {
+      name: "嚣张",
+      id: 1382596189,
+      pst: 0,
+      t: 0,
+      ar: [
+        {
+          id: 32220939,
+          name: "en",
+          tns: [],
+          alias: [],
+        },
+      ],
+      alia: [],
+      pop: 100,
+      st: 0,
+      rt: "",
+      fee: 8,
+      v: 10,
+      crbt: null,
+      cf: "",
+      al: {
+        id: 80816891,
+        name: "嚣张",
+        picUrl:
+          "https://p2.music.126.net/NhkuFBphLFaSmYMeW1-frQ==/109951164271814514.jpg",
+        tns: [],
+        pic_str: "109951164271814514",
+        pic: 109951164271814510,
+      },
+      dt: 253994,
+      h: {
+        br: 320000,
+        fid: 0,
+        size: 10162605,
+        vd: -55669,
+      },
+      m: {
+        br: 192000,
+        fid: 0,
+        size: 6097581,
+        vd: -53082,
+      },
+      l: {
+        br: 128000,
+        fid: 0,
+        size: 4065069,
+        vd: -51369,
+      },
+      a: null,
+      cd: "01",
+      no: 1,
+      rtUrl: null,
+      ftype: 0,
+      rtUrls: [],
+      djId: 0,
+      copyright: 0,
+      s_id: 0,
+      mark: 0,
+      originCoverType: 0,
+      single: 0,
+      noCopyrightRcmd: null,
+      mv: 0,
+      rtype: 0,
+      rurl: null,
+      mst: 9,
+      cp: 1372818,
+      publishTime: 0,
+    }
+  ],
   currentSong: {
     name: "冬眠",
     id: 1398663411,
@@ -72,12 +280,15 @@ const defaultState = Map({
     mv: 0,
     publishTime: 1571932800000,
   },
+  currentSongIndex: 0
 });
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
-    // case actionTypes.CHANGE_CURRENT_SONG:
-    //   return state.set('currentSong', action.currentSong)
+    case actionTypes.CHANGE_CURRENT_SONG:
+      return state.set('currentSong', action.currentSong);
+    case actionTypes.CHANGE_CURRENT_SONG_INDEX: 
+      return state.set('currentSongIndex', action.currentSongIndex)
     default:
       return state;
   }
