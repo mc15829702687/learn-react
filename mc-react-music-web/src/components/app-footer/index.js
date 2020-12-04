@@ -66,7 +66,7 @@ export default memo(function MCAppFooter() {
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                ></a>
+                >{item.link}</a>
                 <span className="title">{item.title}</span>
               </li>
             );

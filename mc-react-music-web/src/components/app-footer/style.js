@@ -9,7 +9,6 @@ export const AppFooterWrapper = styled.div`
   .content {
     display: flex;
     justify-content: space-between;
-    align-items: center;
   }
 `;
 
@@ -62,6 +61,7 @@ export const FooterRight = styled.ul`
       height: 45px;
       background-image: url(${require("@/assets/img/sprite_footer_02.png")});
       background-size: 110px 450px;
+      text-indent: -9999px;
     }
 
     :nth-child(1) .link {

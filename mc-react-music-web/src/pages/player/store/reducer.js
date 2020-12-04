@@ -280,7 +280,9 @@ const defaultState = Map({
     mv: 0,
     publishTime: 1571932800000,
   },
-  currentSongIndex: 0
+  currentSongIndex: 0,
+  lyrics: [],
+  lyricCurrentIndex: 1
 });
 
 const reducer = (state = defaultState, action) => {
@@ -288,7 +290,11 @@ const reducer = (state = defaultState, action) => {
     case actionTypes.CHANGE_CURRENT_SONG:
       return state.set('currentSong', action.currentSong);
     case actionTypes.CHANGE_CURRENT_SONG_INDEX: 
-      return state.set('currentSongIndex', action.currentSongIndex)
+      return state.set('currentSongIndex', action.currentSongIndex);
+    case actionTypes.CHANGE_LYRICS: 
+      return state.set('lyrics', action.lyrics)
+    case actionTypes.CHANGE_LYRIC_CURRENT_INDEX: 
+      return state.set('lyricCurrentIndex', action.lyricCurrentIndex)
     default:
       return state;
   }

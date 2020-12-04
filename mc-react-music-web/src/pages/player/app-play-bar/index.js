@@ -1,7 +1,11 @@
 import React, { memo, useEffect, useRef, useState, useCallback } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { changeCurrentIndexAndSongAction } from "../store/actionCreators";
+import {
+  getCurrentIndexAndSongAction,
+  getDetailLyricAction,
+  changeLyricCurrentIndex,
+} from "../store/actionCreators";
 
 import {
   getSizeImage,
@@ -9,7 +13,7 @@ import {
   formatMinuteSecond,
 } from "@/utils/format-utils";
 
-import { Slider } from "antd";
+import { Slider, message } from "antd";
 import { AppPlayBarWrapper, Control, PlayInfo, Operator } from "./style";
 
 export default memo(function MCAppPlayBar() {
@@ -21,16 +25,23 @@ export default memo(function MCAppPlayBar() {
   const [progressVal, setProgressVal] = useState(0);
 
   // redux hooks
-  const { currentSong, currentSongIndex, playList } = useSelector(
+  const {
+    currentSong,
+    currentSongIndex,
+    playList,
+    lyrics,
+    lyricCurrentIndex,
+  } = useSelector(
     (state) => ({
       currentSong: state.getIn(["player", "currentSong"]),
       currentSongIndex: state.getIn(["player", "currentSongIndex"]),
       playList: state.getIn(["player", "playList"]),
+      lyrics: state.getIn(["player", "lyrics"]),
+      lyricCurrentIndex: state.getIn(["player", "lyricCurrentIndex"]),
     }),
     shallowEqual
   );
-  const dispacth = useDispatch();
-
+  const dispatch = useDispatch();
 
   // other hooks
   const audioRef = useRef();
@@ -47,24 +58,18 @@ export default memo(function MCAppPlayBar() {
     setDuration(currentSong.dt);
   }, [currentSong]);
 
+  useEffect(() => {
+    dispatch(getDetailLyricAction(currentSong.id));
+  }, [dispatch, currentSong]);
+
   // 其他业务逻辑
-  const play = () => {
+  const play = useCallback(() => {
+
     isPlaying
       ? audioRef.current.pause()
       : audioRef.current.play().catch((err) => setIsPlaying(false));
     setIsPlaying(!isPlaying);
-  };
-
-  const timeUpdate = useCallback(
-    (e) => {
-      if (!isChanging) {
-        setCurrentTime(e.target.currentTime * 1000);
-        return setProgressVal((currentTime / duration) * 100);
-      }
-      audioRef.current.pause();
-    },
-    [currentTime, isChanging]
-  );
+  }, [isPlaying]);
 
   const sliderChange = useCallback(
     (value) => {
@@ -77,23 +82,63 @@ export default memo(function MCAppPlayBar() {
   const sliderAfterChange = useCallback(
     (value) => {
       audioRef.current.currentTime = currentTime / 1000;
-      audioRef.current.play();
       setIsChanging(false);
+      setCurrentTime(currentTime / 1000);
+      if (!isPlaying) play();
     },
-    [currentTime]
+    [currentTime, isPlaying, play]
   );
 
-  const changeCurrentSongIndex = (index) => {
-    const currentIndex = currentSongIndex + index;
-    if (currentIndex === -1) {
-      return dispacth(changeCurrentIndexAndSongAction(playList.length - 1, playList));
+  const changeCurrentSongIndex = useCallback(
+    (index) => {
+      const currentIndex = currentSongIndex + index;
+      if (currentIndex === -1) {
+        return dispatch(
+          getCurrentIndexAndSongAction(playList.length - 1, playList)
+        );
+      }
+
+      if (currentIndex === playList.length) {
+        return dispatch(getCurrentIndexAndSongAction(0, playList));
+      }
+      dispatch(getCurrentIndexAndSongAction(currentIndex, playList));
+    },
+    [dispatch, currentSongIndex, playList]
+  );
+
+  const timeUpdate = (e) => {
+    if (!isChanging) {
+      const currentTime = e.target.currentTime * 1000;
+      setCurrentTime(currentTime);
+      setProgressVal((currentTime / duration) * 100);
+
+      let lyricsLength = lyrics.length;
+      let i = 0;
+      for (; i < lyricsLength; i++) {
+        if (currentTime < lyrics[i].time) break;
+      }
+
+      const finalIndex = i - 1;
+      if (finalIndex !== lyricCurrentIndex) {
+        dispatch(changeLyricCurrentIndex(finalIndex));
+        message.open({
+          key: "lyric",
+          duration: 0,
+          content: lyrics[finalIndex] && lyrics[finalIndex].content,
+          className: 'lyric-message'
+        });
+      }
+      return;
     }
-    
-    if (currentIndex === playList.length) {
-      return dispacth(changeCurrentIndexAndSongAction(0, playList));
-    }
-    dispacth(changeCurrentIndexAndSongAction(currentIndex, playList));
   };
+
+  // 播放时间结束
+  const timeEnd = useCallback(
+    (e) => {
+      changeCurrentSongIndex(1);
+    },
+    [changeCurrentSongIndex]
+  );
 
   return (
     <AppPlayBarWrapper className="sprite_playbar">
@@ -157,7 +202,7 @@ export default memo(function MCAppPlayBar() {
           </div>
         </Operator>
       </div>
-      <audio ref={audioRef} onTimeUpdate={timeUpdate} />
+      <audio ref={audioRef} onTimeUpdate={timeUpdate} onEnded={timeEnd} />
     </AppPlayBarWrapper>
   );
 });
